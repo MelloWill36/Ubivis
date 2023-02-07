@@ -35,6 +35,4 @@ public class Machine_halt implements Serializable {
     @Column (length = 128)
     private String reason ;
 
-
-
 }
