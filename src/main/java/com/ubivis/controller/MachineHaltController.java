@@ -6,10 +6,14 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/machineHalt")
@@ -31,6 +35,12 @@ public class MachineHaltController {
     @ResponseStatus(HttpStatus.OK)
     public List<Machine_halt> listaMachine_halt(){
         return machineHaltService.listaMachineHalt();
+    }
+
+    @GetMapping(value = "/filtro")
+    public ResponseEntity<List<Machine_halt>> findByMachine(String machine_Tag,LocalTime inicio,LocalTime fim) {
+        List<Machine_halt> collection = machineHaltService.filtro(machine_Tag,inicio,fim);
+        return ResponseEntity.ok().body(collection);
     }
 
     @GetMapping("/{id}")

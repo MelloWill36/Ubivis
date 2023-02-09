@@ -19,18 +19,18 @@ import java.time.LocalTime;
 @Entity
 public class Machine_halt implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
     @Column (nullable = false, length = 24)
-    private String machine_tag;
+    private String machine;
 
     @Column (nullable = false)
-    private LocalTime start_time;
+    private LocalTime start;
 
     @Column
-    private LocalTime end_time;
+    private LocalTime pause;
 
     @Column (length = 128)
     private String reason ;
